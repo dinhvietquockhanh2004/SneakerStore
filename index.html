@@ -34,13 +34,17 @@
             </button>
             <div class="lang-wrap" id="langWrap">
                 <button class="lang-btn" onclick="toggleLangMenu()">
-                    <span id="langFlag">🇻🇳</span>
+                    <img id="langFlag" src="https://flagcdn.com/24x18/vn.png" width="24" height="18" alt="VI" style="border-radius:2px;display:block;">
                     <span id="langCode">VI</span>
                     <i class="fa-solid fa-chevron-down lang-caret"></i>
                 </button>
                 <div class="lang-menu" id="langMenu">
-                    <button class="lang-option" id="langOptEn" onclick="setLang('en')">🇺🇸 English</button>
-                    <button class="lang-option active" id="langOptVi" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
+                    <button class="lang-option" id="langOptEn" onclick="setLang('en')">
+                        <img src="https://flagcdn.com/24x18/us.png" width="24" height="18" alt="EN" style="border-radius:2px;"> English
+                    </button>
+                    <button class="lang-option active" id="langOptVi" onclick="setLang('vi')">
+                        <img src="https://flagcdn.com/24x18/vn.png" width="24" height="18" alt="VI" style="border-radius:2px;"> Tiếng Việt
+                    </button>
                 </div>
             </div>
             <div class="auth-nav-area" id="authNavArea">

@@ -692,7 +692,8 @@ function applyTranslations(lang) {
     });
     document.getElementById('langOptEn').classList.toggle('active', lang === 'en');
     document.getElementById('langOptVi').classList.toggle('active', lang === 'vi');
-    document.getElementById('langFlag').textContent = lang === 'en' ? '🇺🇸' : '🇻🇳';
+    document.getElementById('langFlag').src = lang === 'en' ? 'https://flagcdn.com/24x18/us.png' : 'https://flagcdn.com/24x18/vn.png';
+    document.getElementById('langFlag').alt = lang === 'en' ? 'EN' : 'VI';
     document.getElementById('langCode').textContent = lang === 'en' ? 'EN' : 'VI';
     document.documentElement.lang = lang;
 }
