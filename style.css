@@ -23,7 +23,6 @@ body {
     overflow-x: hidden;
 }
 
-/* CUSTOM CURSOR */
 #cursor {
     width: 12px; height: 12px;
     background: var(--accent);
@@ -35,7 +34,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* NAVIGATION BAR */
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -93,7 +91,6 @@ nav {
     font-weight: 700;
 }
 
-/* HERO SECTION */
 .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1fr 1fr;
@@ -154,14 +151,12 @@ nav {
     padding: 8px 16px; border-radius: 100px; font-size: 12px; font-weight: 600;
 }
 
-/* MARQUEE RUNNING TEXT */
 .marquee-section { padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: var(--surface); }
 .marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 25s linear infinite; white-space: nowrap; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--text-muted); display: flex; align-items: center; gap: 16px; }
 .marquee-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-/* PRODUCT SHOP GRID */
 .filter-section { padding: 80px 48px 24px; }
 .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
 .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 1px; }
@@ -203,7 +198,6 @@ nav {
 }
 .add-cart-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
-/* FLASH SALE BANNER */
 .featured-section { margin: 0 48px 80px; background: linear-gradient(135deg, #0f1a00 0%, #172b02 100%); border-radius: 24px; padding: 60px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; border: 1px solid rgba(232,255,71,0.15); }
 .featured-tag { display: inline-block; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 100px; margin-bottom: 16px; text-transform: uppercase; }
 .featured-title { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; margin-bottom: 16px; }
@@ -216,7 +210,6 @@ nav {
 .countdown-sep { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--accent); }
 .featured-visual img { width: 90%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); transform: rotate(10deg); }
 
-/* BRANDS ROW */
 .brands-section { padding: 0 48px 80px; }
 .brands-grid { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .brand-item {
@@ -225,7 +218,6 @@ nav {
 }
 .brand-item:hover { color: var(--text); background: var(--surface2); }
 
-/* SLIDE GIỎ HÀNG BAR */
 .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; display: none; backdrop-filter: blur(4px); }
 .cart-overlay.open { display: block; }
 .cart-sidebar {
@@ -252,7 +244,6 @@ nav {
 .cart-total { display: flex; justify-content: space-between; font-family: 'Bebas Neue', sans-serif; font-size: 24px; margin-bottom: 16px; }
 .checkout-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 16px; border-radius: var(--radius); font-weight: 700; cursor: pointer; }
 
-/* DETAIL MODAL OVERLAY */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 150; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); padding: 20px; }
 .modal-overlay.open { display: flex; }
 .modal { background: var(--surface); border-radius: 24px; border: 1px solid var(--border); max-width: 840px; width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; position: relative; }
@@ -271,11 +262,9 @@ nav {
 .size-btn { min-width: 48px; height: 38px; background: var(--surface2); border: 1px solid var(--border); color: #fff; border-radius: var(--radius-sm); cursor: pointer; }
 .size-btn.active, .size-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
 
-/* TOAST TO NOTIFY */
 .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: #111; border: 1px solid var(--accent); padding: 12px 32px; border-radius: 100px; color: var(--accent); font-weight: 600; z-index: 300; transition: transform 0.3s ease; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* FOOTER STYLING */
 footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; background: #0c0c0c; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--accent); }
@@ -292,7 +281,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
 .social-btn { width: 36px; height: 36px; background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; }
 .social-btn:hover { background: var(--accent); color: #000; }
 
-/* AUTH LOGIN BUTTON */
 .login-btn {
     background: transparent;
     color: var(--text);
@@ -314,7 +302,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
     background: rgba(232,255,71,0.06);
 }
 
-/* USER AVATAR & DROPDOWN */
 .auth-nav-area { position: relative; }
 .user-avatar-wrap { position: relative; }
 .user-avatar-wrap.hidden, .hidden { display: none !important; }
@@ -396,7 +383,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
 }
 .user-logout-btn:hover { background: rgba(255,71,87,0.08); }
 
-/* AUTH MODAL OVERLAY */
 .auth-overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.75);
@@ -446,7 +432,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
 }
 .auth-subtitle { text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
 
-/* AUTH TABS */
 .auth-tabs {
     display: flex;
     background: var(--surface2);
@@ -461,7 +446,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
 }
 .auth-tab.active { background: var(--accent); color: #000; }
 
-/* AUTH FORM FIELDS */
 .auth-form { display: flex; flex-direction: column; }
 .auth-form.hidden { display: none; }
 .form-group { margin-bottom: 16px; }
@@ -544,7 +528,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
 }
 .social-auth-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,255,71,0.05); }
 
-/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }

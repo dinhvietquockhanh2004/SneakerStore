@@ -1,18 +1,15 @@
-// Khai báo các biến toàn cục quản lý trạng thái ứng dụng
 let productsData = [];
 let cart = [];
 let currentSelectedSize = null;
 let activeModalProduct = null;
 let currentUser = null;
 
-// Khởi chạy ứng dụng khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     fetchProducts();
     setupSearch();
     initAuth();
 
-    // Đóng user dropdown khi click ra ngoài
     document.addEventListener('click', (e) => {
         const wrap = document.getElementById('userAvatarWrap');
         if (wrap && !wrap.contains(e.target)) {
@@ -21,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* 1. HIỆU ỨNG CON TRỎ CHUỘT (CUSTOM CURSOR) */
 function initCursor() {
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
@@ -29,7 +25,6 @@ function initCursor() {
         cursor.style.top = e.clientY + 'px';
     });
 
-    // Tạo hiệu ứng phóng to con trỏ khi tương tác các phần tử Clickable
     const clickables = document.querySelectorAll('a, button, .product-card, .brand-item');
     clickables.forEach(item => {
         item.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
@@ -37,7 +32,6 @@ function initCursor() {
     });
 }
 
-/* 2. ĐỌC DỮ LIỆU TỪ FILE JSON */
 function fetchProducts() {
     productsData = [
         {
@@ -88,7 +82,7 @@ function fetchProducts() {
             "price": 160,
             "rating": 4.7,
             "reviews": 95,
-            "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&auto=format&fit=crop&q=80",
             "sizes": [41, 42, 43, 44],
             "desc": "Công nghệ 4D Guidance System đem lại sự ổn định tuyệt đối và lớp đệm FF BLAST™ PLUS ECO cho trải nghiệm êm ái đỉnh cao."
         },
@@ -115,7 +109,7 @@ function fetchProducts() {
             "badgeClass": "sale-badge",
             "rating": 4.7,
             "reviews": 88,
-            "image": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&auto=format&fit=crop&q=80",
             "sizes": [40, 41, 42, 43, 44],
             "desc": "Được thiết kế để giảm thiểu chấn thương, Nike React Infinity Run tích hợp đế React êm ái và phần trên Flyknit thoáng khí cho mỗi bước chạy."
         },
@@ -142,7 +136,7 @@ function fetchProducts() {
             "badgeClass": "sale-badge",
             "rating": 4.6,
             "reviews": 143,
-            "image": "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&auto=format&fit=crop&q=80",
             "sizes": [39, 40, 41, 42, 43, 44],
             "desc": "Phong cách đường phố táo bạo kết hợp công nghệ Boost tối tân và các khối EVA mang tính biểu tượng, NMD R1 là lựa chọn hoàn hảo cho giới trẻ."
         },
@@ -155,7 +149,7 @@ function fetchProducts() {
             "badgeClass": "new-badge",
             "rating": 4.5,
             "reviews": 203,
-            "image": "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=600&auto=format&fit=crop&q=80",
             "sizes": [38, 39, 40, 41, 42, 43],
             "desc": "Được ra mắt năm 1968, Puma Suede Classic là một trong những đôi giày lâu đời nhất và được yêu thích nhất mọi thời đại với chất liệu da lộn mềm mại."
         },
@@ -181,7 +175,7 @@ function fetchProducts() {
             "badgeClass": "new-badge",
             "rating": 4.9,
             "reviews": 76,
-            "image": "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&auto=format&fit=crop&q=80",
             "sizes": [39, 40, 41, 42, 43, 44],
             "desc": "Phiên bản thứ 25 của dòng Nimbus huyền thoại với hệ thống đệm GEL™ cải tiến, mang lại trải nghiệm chạy bộ êm ái nhất từ trước đến nay."
         },
@@ -208,7 +202,7 @@ function fetchProducts() {
             "badgeClass": "new-badge",
             "rating": 4.9,
             "reviews": 134,
-            "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
+            "image": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=600&auto=format&fit=crop&q=80",
             "sizes": [40, 41, 42, 43, 44],
             "desc": "Sản xuất tại Mỹ với tiêu chuẩn thủ công đỉnh cao, New Balance 990v6 kết hợp da mịn, lưới Pigskin và đế ENCAP/ABZORB cho cảm giác đi siêu êm."
         },
@@ -255,7 +249,6 @@ function fetchProducts() {
     renderProducts(productsData);
 }
 
-/* 3. ĐỔ SẢN PHẨM RA HTML CHUYÊN NGHIỆP */
 function renderProducts(products) {
     const container = document.getElementById('productGridContainer');
     container.innerHTML = '';
@@ -293,7 +286,6 @@ function renderProducts(products) {
     });
 }
 
-/* 4. CHỨC NĂNG LỌC SẢN PHẨM */
 function filterProducts(brandName) {
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => {
@@ -309,7 +301,6 @@ function filterProducts(brandName) {
     }
 }
 
-/* 5. TÌM KIẾM THEO TÊN GIÀY */
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', (e) => {
@@ -319,7 +310,6 @@ function setupSearch() {
     });
 }
 
-/* 6. POPUP XEM CHI TIẾT SẢN PHẨM (QUICK VIEW) */
 function openQuickView(id) {
     const product = productsData.find(p => p.id === id);
     if (!product) return;
@@ -367,7 +357,6 @@ function closeModal(e) {
     }
 }
 
-/* 7. XỬ LÝ LOGIC GIỎ HÀNG (CART LOGIC) */
 function toggleCart() {
     document.getElementById('cartSidebar').classList.toggle('open');
     document.getElementById('cartOverlay').classList.toggle('open');
@@ -439,7 +428,6 @@ function removeFromCart(index) {
     updateCartUI();
 }
 
-/* 8. HIỂN THỊ THÔNG BÁO TOAST */
 function showToast(msg) {
     const toast = document.getElementById('toastNotification');
     toast.textContent = msg || 'Đã thêm vào giỏ hàng thành công!';
@@ -458,12 +446,8 @@ function checkoutAlert() {
     toggleCart();
 }
 
-/* =============================================
-   9. HỆ THỐNG ĐĂNG NHẬP / ĐĂNG KÝ (AUTH)
-   ============================================= */
 
 function initAuth() {
-    // Kiểm tra phiên đăng nhập đã lưu
     const saved = localStorage.getItem('sole_user');
     if (saved) {
         try {
