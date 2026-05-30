@@ -560,7 +560,6 @@ footer { border-top: 1px solid var(--border); padding: 60px 48px 32px; backgroun
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
 }
-/* ===================== LIGHT MODE ===================== */
 html.light {
     --bg: #f5f4f0;
     --surface: #ffffff;
@@ -575,7 +574,6 @@ html.light .marquee-section { background: #111; }
 html.light footer { background: #e8e6e0; }
 html.light #cursor { background: #111; }
 
-/* ===================== THEME TOGGLE ===================== */
 .theme-toggle-btn {
     background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
     width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
@@ -584,7 +582,6 @@ html.light #cursor { background: #111; }
 }
 .theme-toggle-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ===================== LANGUAGE DROPDOWN ===================== */
 .lang-wrap { position: relative; flex-shrink: 0; }
 .lang-btn {
     background: var(--surface2); border: 1px solid var(--border); color: var(--text);

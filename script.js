@@ -634,7 +634,6 @@ function socialLogin(provider) {
     showToast('Đăng nhập ' + provider + ' — tính năng sắp ra mắt!');
 }
 
-/* ===================== TRANSLATIONS ===================== */
 const translations = {
     vi: {
         nav_home: 'Trang Chủ', nav_shop: 'Mua Sắm', nav_trending: 'Xu Hướng', nav_brands: 'Thương Hiệu',
@@ -709,7 +708,6 @@ function toggleLangMenu() {
     document.getElementById('langWrap').classList.toggle('open');
 }
 
-/* ===================== THEME ===================== */
 function toggleTheme() {
     const isLight = document.documentElement.classList.toggle('light');
     localStorage.setItem('sole_theme', isLight ? 'light' : 'dark');
