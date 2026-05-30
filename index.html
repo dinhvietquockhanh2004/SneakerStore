@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SOLE — Premium Footwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="#" class="nav-logo">SOLE</a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#shop">Shop All</a></li>
+            <li><a href="#featured">Trending</a></li>
+            <li><a href="#brands">Brands</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Tìm kiếm giày..." class="nav-search" id="searchInput"/>
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-info">
+            <div class="hero-eyebrow">NEW ARRIVAL COLLECTION</div>
+            <h1 class="hero-title">STEP INTO <span>FUTURE</span></h1>
+            <p class="hero-desc">Trải nghiệm những bước đi êm ái cùng bộ sưu tập giày Sneaker cao cấp thế hệ mới. Thiết kế phá cách đột phá hiệu năng.</p>
+            <div class="hero-ctas">
+                <a href="#shop" class="btn-primary">Mua Ngay <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="btn-ghost">Khám Phá</button>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">99k+</div>
+                    <div class="stat-label">Khách Hàng</div>
+                </div>
+                <div>
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Thương Hiệu</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-shoe-wrap">
+                <div class="hero-shoe-bg"></div>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80" alt="Hero Shoe" class="hero-shoe-img">
+                <div class="hero-badge">
+                    <div class="hero-badge-label">Limited Edition</div>
+                    <div class="hero-badge-val">Nike Air Max</div>
+                </div>
+                <div class="hero-tag">Best Seller</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item"><span class="marquee-dot"></span>NIKE SPEED</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>ADIDAS BOOST</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>PUMA FUTURE</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>ASICS GEL</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>NIKE SPEED</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>ADIDAS BOOST</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>PUMA FUTURE</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>ASICS GEL</div>
+        </div>
+    </section>
+
+    <section class="filter-section" id="shop">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">POPULAR SNEAKERS</h2>
+                <p class="section-sub">Khám phá các mẫu giày bán chạy nhất thị trường hiện nay</p>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterProducts('All')">All</button>
+                <button class="filter-btn" onclick="filterProducts('Nike')">Nike</button>
+                <button class="filter-btn" onclick="filterProducts('Adidas')">Adidas</button>
+                <button class="filter-btn" onclick="filterProducts('Puma')">Puma</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="product-grid" id="productGridContainer"></div>
+    </section>
+
+    <section class="featured-section" id="featured">
+        <div class="featured-info">
+            <span class="featured-tag">Flash Sale</span>
+            <h2 class="featured-title">LIMITLESS <span>OFFER</span></h2>
+            <p class="featured-desc">Cơ hội duy nhất sở hữu các siêu phẩm Sneaker với mức ưu đãi lên đến 30%. Số lượng có hạn.</p>
+            <div class="countdown">
+                <div class="countdown-item"><span class="countdown-num" id="days">02</span><span class="countdown-label">Ngày</span></div>
+                <span class="countdown-sep">:</span>
+                <div class="countdown-item"><span class="countdown-num" id="hours">14</span><span class="countdown-label">Giờ</span></div>
+                <span class="countdown-sep">:</span>
+                <div class="countdown-item"><span class="countdown-num" id="minutes">45</span><span class="countdown-label">Phút</span></div>
+            </div>
+            <a href="#shop" class="btn-primary">Săn Deal Ngay</a>
+        </div>
+        <div class="featured-visual">
+            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&auto=format&fit=crop&q=80" alt="Featured Shoe">
+        </div>
+    </section>
+
+    <section class="brands-section" id="brands">
+        <div class="brands-grid">
+            <div class="brand-item" onclick="filterProducts('Nike')">NIKE</div>
+            <div class="brand-item" onclick="filterProducts('Adidas')">ADIDAS</div>
+            <div class="brand-item" onclick="filterProducts('Puma')">PUMA</div>
+            <div class="brand-item" onclick="filterProducts('Asics')">ASICS</div>
+        </div>
+    </section>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <div class="cart-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Tổng cộng:</span>
+                <span id="cartTotalPrice">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutAlert()">TIẾN HÀNH THANH TOÁN</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="quickViewModal">
+            <div class="modal-left">
+                <div class="modal-main-img">
+                    <img id="modalImg" src="" alt="Giày">
+                </div>
+            </div>
+            <div class="modal-right">
+                <div class="modal-header">
+                    <div class="modal-brand-row">
+                        <span class="modal-brand" id="modalBrand">BRAND</span>
+                        <button class="modal-close" onclick="closeModalDirect()"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <h2 class="modal-name" id="modalName">Tên Sản Phẩm</h2>
+                    <div class="modal-rating-row">
+                        <div class="modal-stars"><i class="fa-solid fa-star"></i> <span id="modalRating">4.8</span></div>
+                        <span class="modal-reviews">(<span id="modalReviews">100</span> reviews)</span>
+                    </div>
+                    <div class="modal-price-row">
+                        <span class="modal-price" id="modalPrice">$0.00</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <span class="modal-section-label">Mô tả sản phẩm</span>
+                    <p class="modal-desc" id="modalDesc">Chi tiết giày...</p>
+                    
+                    <span class="modal-section-label">Chọn Size (EU)</span>
+                    <div class="size-grid" id="modalSizesContainer"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-primary" id="modalAddToCartBtn">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toastNotification">Đã thêm vào giỏ hàng thành công!</div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">SOLE</div>
+                <p class="footer-desc">Hệ thống phân phối giày Sneaker cao cấp chính hãng hàng đầu Việt Nam.</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Nhập Email của bạn..."/>
+                    <button>Đăng ký</button>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Sản Phẩm</div>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="filterProducts('Nike')">Nike Sneaker</a></li>
+                    <li><a href="#" onclick="filterProducts('Adidas')">Adidas Original</a></li>
+                    <li><a href="#">Giày Chạy Bộ</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Hỗ Trợ</div>
+                <ul class="footer-links">
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Hướng dẫn chọn size</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 SOLE Premium. All rights reserved.</div>
+            <div class="footer-socials">
+                <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
