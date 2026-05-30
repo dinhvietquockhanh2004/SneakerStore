@@ -633,3 +633,100 @@ function socialLogin(provider) {
     closeAuthModal();
     showToast('Đăng nhập ' + provider + ' — tính năng sắp ra mắt!');
 }
+
+/* ===================== TRANSLATIONS ===================== */
+const translations = {
+    vi: {
+        nav_home: 'Trang Chủ', nav_shop: 'Mua Sắm', nav_trending: 'Xu Hướng', nav_brands: 'Thương Hiệu',
+        search_ph: 'Tìm kiếm giày...', nav_login: 'Đăng Nhập',
+        hero_eyebrow: 'BỘ SƯU TẬP MỚI', hero_desc: 'Trải nghiệm những bước đi êm ái cùng bộ sưu tập giày Sneaker cao cấp thế hệ mới. Thiết kế phá cách đột phá hiệu năng.',
+        btn_buy: 'Mua Ngay', btn_explore: 'Khám Phá',
+        stat_customers: 'Khách Hàng', stat_brands: 'Thương Hiệu',
+        shop_title: 'SNEAKER PHỔ BIẾN', shop_sub: 'Khám phá các mẫu giày bán chạy nhất thị trường hiện nay',
+        filter_all: 'Tất Cả',
+        flash_sale: 'Flash Sale', featured_desc: 'Cơ hội duy nhất sở hữu các siêu phẩm Sneaker với mức ưu đãi lên đến 30%. Số lượng có hạn.',
+        cd_days: 'Ngày', cd_hours: 'Giờ', cd_mins: 'Phút', featured_cta: 'Săn Deal Ngay',
+        cart_title: 'GIỎ HÀNG', cart_total: 'Tổng cộng:', checkout_btn: 'TIẾN HÀNH THANH TOÁN',
+        modal_desc_label: 'Mô tả sản phẩm', modal_size_label: 'Chọn Size (EU)', add_to_cart: 'THÊM VÀO GIỎ HÀNG',
+        toast_added: 'Đã thêm vào giỏ hàng thành công!',
+        footer_col_products: 'Sản Phẩm', footer_col_support: 'Hỗ Trợ', footer_col_contact: 'Liên Hệ',
+        footer_nike: 'Nike Sneaker', footer_adidas: 'Adidas Original', footer_running: 'Giày Chạy Bộ',
+        footer_return: 'Chính sách đổi trả', footer_warranty: 'Chính sách bảo hành', footer_size: 'Hướng dẫn chọn size',
+        email_ph: 'Nhập Email của bạn...', email_btn: 'Đăng ký',
+        auth_welcome: 'Chào mừng trở lại', auth_login_tab: 'Đăng Nhập', auth_register_tab: 'Đăng Ký',
+        dd_orders: 'Đơn hàng của tôi', dd_wishlist: 'Yêu thích', dd_settings: 'Cài đặt tài khoản', logout: 'Đăng Xuất',
+    },
+    en: {
+        nav_home: 'Home', nav_shop: 'Shop All', nav_trending: 'Trending', nav_brands: 'Brands',
+        search_ph: 'Search sneakers...', nav_login: 'Sign In',
+        hero_eyebrow: 'NEW ARRIVAL COLLECTION', hero_desc: 'Experience the comfort of next-gen premium sneakers. Bold design, breakthrough performance.',
+        btn_buy: 'Buy Now', btn_explore: 'Explore',
+        stat_customers: 'Customers', stat_brands: 'Brands',
+        shop_title: 'POPULAR SNEAKERS', shop_sub: 'Discover the best-selling sneakers on the market right now',
+        filter_all: 'All',
+        flash_sale: 'Flash Sale', featured_desc: 'Your one chance to own premium Sneakers with up to 30% off. Limited quantities.',
+        cd_days: 'Days', cd_hours: 'Hours', cd_mins: 'Mins', featured_cta: 'Shop Deals',
+        cart_title: 'YOUR CART', cart_total: 'Total:', checkout_btn: 'PROCEED TO CHECKOUT',
+        modal_desc_label: 'Product description', modal_size_label: 'Select Size (EU)', add_to_cart: 'ADD TO CART',
+        toast_added: 'Added to cart successfully!',
+        footer_col_products: 'Products', footer_col_support: 'Support', footer_col_contact: 'Contact',
+        footer_nike: 'Nike Sneaker', footer_adidas: 'Adidas Original', footer_running: 'Running Shoes',
+        footer_return: 'Return Policy', footer_warranty: 'Warranty Policy', footer_size: 'Size Guide',
+        email_ph: 'Enter your email...', email_btn: 'Subscribe',
+        auth_welcome: 'Welcome back', auth_login_tab: 'Sign In', auth_register_tab: 'Sign Up',
+        dd_orders: 'My Orders', dd_wishlist: 'Wishlist', dd_settings: 'Account Settings', logout: 'Sign Out',
+    }
+};
+
+let currentLang = localStorage.getItem('sole_lang') || 'vi';
+
+function applyTranslations(lang) {
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    document.getElementById('langOptEn').classList.toggle('active', lang === 'en');
+    document.getElementById('langOptVi').classList.toggle('active', lang === 'vi');
+    document.getElementById('langFlag').textContent = lang === 'en' ? '🇺🇸' : '🇻🇳';
+    document.getElementById('langCode').textContent = lang === 'en' ? 'EN' : 'VI';
+    document.documentElement.lang = lang;
+}
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('sole_lang', lang);
+    applyTranslations(lang);
+    document.getElementById('langWrap').classList.remove('open');
+}
+
+function toggleLangMenu() {
+    document.getElementById('langWrap').classList.toggle('open');
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('sole_theme', isLight ? 'light' : 'dark');
+    document.getElementById('themeIcon').className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
+
+function initThemeLang() {
+    const savedTheme = localStorage.getItem('sole_theme');
+    if (savedTheme === 'light') {
+        document.documentElement.classList.add('light');
+        document.getElementById('themeIcon').className = 'fa-solid fa-sun';
+    }
+    applyTranslations(currentLang);
+
+    document.addEventListener('click', (e) => {
+        const wrap = document.getElementById('langWrap');
+        if (wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initThemeLang);

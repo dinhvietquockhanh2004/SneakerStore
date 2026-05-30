@@ -15,24 +15,38 @@
     <nav>
         <a href="#" class="nav-logo">SOLE</a>
         <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#shop">Shop All</a></li>
-            <li><a href="#featured">Trending</a></li>
-            <li><a href="#brands">Brands</a></li>
+            <li><a href="#" class="active" data-i18n="nav_home">Home</a></li>
+            <li><a href="#shop" data-i18n="nav_shop">Shop All</a></li>
+            <li><a href="#featured" data-i18n="nav_trending">Trending</a></li>
+            <li><a href="#brands" data-i18n="nav_brands">Brands</a></li>
         </ul>
         <div class="nav-actions">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="Tìm kiếm giày..." class="nav-search" id="searchInput"/>
+                <input type="text" data-i18n-ph="search_ph" placeholder="Tìm kiếm giày..." class="nav-search" id="searchInput"/>
             </div>
             <button class="cart-btn" onclick="toggleCart()">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Đổi giao diện">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+            <div class="lang-wrap" id="langWrap">
+                <button class="lang-btn" onclick="toggleLangMenu()">
+                    <span id="langFlag">🇻🇳</span>
+                    <span id="langCode">VI</span>
+                    <i class="fa-solid fa-chevron-down lang-caret"></i>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-option" id="langOptEn" onclick="setLang('en')">🇺🇸 English</button>
+                    <button class="lang-option active" id="langOptVi" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
+                </div>
+            </div>
             <div class="auth-nav-area" id="authNavArea">
                 <button class="login-btn" id="loginNavBtn" onclick="openAuthModal('login')">
                     <i class="fa-solid fa-user"></i>
-                    Đăng Nhập
+                    <span data-i18n="nav_login">Đăng Nhập</span>
                 </button>
                 <div class="user-avatar-wrap hidden" id="userAvatarWrap">
                     <button class="user-avatar-btn" onclick="toggleUserMenu()">
@@ -46,11 +60,11 @@
                             <div class="user-dropdown-email" id="dropdownEmail">user@example.com</div>
                         </div>
                         <ul class="user-dropdown-menu">
-                            <li><a href="#"><i class="fa-solid fa-bag-shopping"></i> Đơn hàng của tôi</a></li>
-                            <li><a href="#"><i class="fa-solid fa-heart"></i> Yêu thích</a></li>
-                            <li><a href="#"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a></li>
+                            <li><a href="#"><i class="fa-solid fa-bag-shopping"></i> <span data-i18n="dd_orders">Đơn hàng của tôi</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-heart"></i> <span data-i18n="dd_wishlist">Yêu thích</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-gear"></i> <span data-i18n="dd_settings">Cài đặt tài khoản</span></a></li>
                         </ul>
-                        <button class="user-logout-btn" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</button>
+                        <button class="user-logout-btn" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="logout">Đăng Xuất</span></button>
                     </div>
                 </div>
             </div>
@@ -61,10 +75,10 @@
     <div class="auth-modal" id="authModal">
         <button class="auth-modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
         <div class="auth-brand">SOLE</div>
-        <p class="auth-subtitle" id="authSubtitle">Chào mừng trở lại</p>
+        <p class="auth-subtitle" id="authSubtitle" data-i18n="auth_welcome">Chào mừng trở lại</p>
         <div class="auth-tabs">
-            <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Đăng Nhập</button>
-            <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Đăng Ký</button>
+            <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')" data-i18n="auth_login_tab">Đăng Nhập</button>
+            <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')" data-i18n="auth_register_tab">Đăng Ký</button>
         </div>
 
         <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
@@ -137,21 +151,21 @@
 
     <section class="hero">
         <div class="hero-info">
-            <div class="hero-eyebrow">NEW ARRIVAL COLLECTION</div>
+            <div class="hero-eyebrow" data-i18n="hero_eyebrow">NEW ARRIVAL COLLECTION</div>
             <h1 class="hero-title">STEP INTO <span>FUTURE</span></h1>
-            <p class="hero-desc">Trải nghiệm những bước đi êm ái cùng bộ sưu tập giày Sneaker cao cấp thế hệ mới. Thiết kế phá cách đột phá hiệu năng.</p>
+            <p class="hero-desc" data-i18n="hero_desc">Trải nghiệm những bước đi êm ái cùng bộ sưu tập giày Sneaker cao cấp thế hệ mới. Thiết kế phá cách đột phá hiệu năng.</p>
             <div class="hero-ctas">
-                <a href="#shop" class="btn-primary">Mua Ngay <i class="fa-solid fa-arrow-right"></i></a>
-                <button class="btn-ghost">Khám Phá</button>
+                <a href="#shop" class="btn-primary"><span data-i18n="btn_buy">Mua Ngay</span> <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="btn-ghost" data-i18n="btn_explore">Khám Phá</button>
             </div>
             <div class="hero-stats">
                 <div>
                     <div class="stat-num">99k+</div>
-                    <div class="stat-label">Khách Hàng</div>
+                    <div class="stat-label" data-i18n="stat_customers">Khách Hàng</div>
                 </div>
                 <div>
                     <div class="stat-num">50+</div>
-                    <div class="stat-label">Thương Hiệu</div>
+                    <div class="stat-label" data-i18n="stat_brands">Thương Hiệu</div>
                 </div>
             </div>
         </div>
@@ -184,11 +198,11 @@
     <section class="filter-section" id="shop">
         <div class="section-header">
             <div>
-                <h2 class="section-title">POPULAR SNEAKERS</h2>
-                <p class="section-sub">Khám phá các mẫu giày bán chạy nhất thị trường hiện nay</p>
+                <h2 class="section-title" data-i18n="shop_title">POPULAR SNEAKERS</h2>
+                <p class="section-sub" data-i18n="shop_sub">Khám phá các mẫu giày bán chạy nhất thị trường hiện nay</p>
             </div>
             <div class="filters">
-                <button class="filter-btn active" onclick="filterProducts('All')">All</button>
+                <button class="filter-btn active" onclick="filterProducts('All')" data-i18n="filter_all">All</button>
                 <button class="filter-btn" onclick="filterProducts('Nike')">Nike</button>
                 <button class="filter-btn" onclick="filterProducts('Adidas')">Adidas</button>
                 <button class="filter-btn" onclick="filterProducts('Puma')">Puma</button>
@@ -206,17 +220,17 @@
 
     <section class="featured-section" id="featured">
         <div class="featured-info">
-            <span class="featured-tag">Flash Sale</span>
+            <span class="featured-tag" data-i18n="flash_sale">Flash Sale</span>
             <h2 class="featured-title">LIMITLESS <span>OFFER</span></h2>
-            <p class="featured-desc">Cơ hội duy nhất sở hữu các siêu phẩm Sneaker với mức ưu đãi lên đến 30%. Số lượng có hạn.</p>
+            <p class="featured-desc" data-i18n="featured_desc">Cơ hội duy nhất sở hữu các siêu phẩm Sneaker với mức ưu đãi lên đến 30%. Số lượng có hạn.</p>
             <div class="countdown">
-                <div class="countdown-item"><span class="countdown-num" id="days">02</span><span class="countdown-label">Ngày</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="days">02</span><span class="countdown-label" data-i18n="cd_days">Ngày</span></div>
                 <span class="countdown-sep">:</span>
-                <div class="countdown-item"><span class="countdown-num" id="hours">14</span><span class="countdown-label">Giờ</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="hours">14</span><span class="countdown-label" data-i18n="cd_hours">Giờ</span></div>
                 <span class="countdown-sep">:</span>
-                <div class="countdown-item"><span class="countdown-num" id="minutes">45</span><span class="countdown-label">Phút</span></div>
+                <div class="countdown-item"><span class="countdown-num" id="minutes">45</span><span class="countdown-label" data-i18n="cd_mins">Phút</span></div>
             </div>
-            <a href="#shop" class="btn-primary">Săn Deal Ngay</a>
+            <a href="#shop" class="btn-primary" data-i18n="featured_cta">Săn Deal Ngay</a>
         </div>
         <div class="featured-visual">
             <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&auto=format&fit=crop&q=80" alt="Featured Shoe">
@@ -238,16 +252,16 @@
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h2>YOUR CART</h2>
+            <h2 data-i18n="cart_title">YOUR CART</h2>
             <div class="cart-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></div>
         </div>
         <div class="cart-items" id="cartItemsContainer"></div>
         <div class="cart-footer">
             <div class="cart-total">
-                <span>Tổng cộng:</span>
+                <span data-i18n="cart_total">Tổng cộng:</span>
                 <span id="cartTotalPrice">$0.00</span>
             </div>
-            <button class="checkout-btn" onclick="checkoutAlert()">TIẾN HÀNH THANH TOÁN</button>
+            <button class="checkout-btn" onclick="checkoutAlert()" data-i18n="checkout_btn">TIẾN HÀNH THANH TOÁN</button>
         </div>
     </div>
 
@@ -274,20 +288,20 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <span class="modal-section-label">Mô tả sản phẩm</span>
+                    <span class="modal-section-label" data-i18n="modal_desc_label">Mô tả sản phẩm</span>
                     <p class="modal-desc" id="modalDesc">Chi tiết giày...</p>
                     
-                    <span class="modal-section-label">Chọn Size (EU)</span>
+                    <span class="modal-section-label" data-i18n="modal_size_label">Chọn Size (EU)</span>
                     <div class="size-grid" id="modalSizesContainer"></div>
                 </div>
                 <div class="modal-actions">
-                    <button class="btn-primary" id="modalAddToCartBtn">THÊM VÀO GIỎ HÀNG</button>
+                    <button class="btn-primary" id="modalAddToCartBtn" data-i18n="add_to_cart">THÊM VÀO GIỎ HÀNG</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="toast" id="toastNotification">Đã thêm vào giỏ hàng thành công!</div>
+    <div class="toast" id="toastNotification" data-i18n="toast_added">Đã thêm vào giỏ hàng thành công!</div>
 
     <footer>
         <div class="footer-grid">
@@ -295,28 +309,28 @@
                 <div class="footer-brand-name">SOLE</div>
                 <p class="footer-desc">Hệ thống phân phối giày Sneaker cao cấp chính hãng hàng đầu Việt Nam.</p>
                 <div class="newsletter">
-                    <input type="email" placeholder="Nhập Email của bạn..."/>
-                    <button>Đăng ký</button>
+                    <input type="email" data-i18n-ph="email_ph" placeholder="Nhập Email của bạn..."/>
+                    <button data-i18n="email_btn">Đăng ký</button>
                 </div>
             </div>
             <div>
-                <div class="footer-col-title">Sản Phẩm</div>
+                <div class="footer-col-title" data-i18n="footer_col_products">Sản Phẩm</div>
                 <ul class="footer-links">
-                    <li><a href="#" onclick="filterProducts('Nike')">Nike Sneaker</a></li>
-                    <li><a href="#" onclick="filterProducts('Adidas')">Adidas Original</a></li>
-                    <li><a href="#">Giày Chạy Bộ</a></li>
+                    <li><a href="#" onclick="filterProducts('Nike')" data-i18n="footer_nike">Nike Sneaker</a></li>
+                    <li><a href="#" onclick="filterProducts('Adidas')" data-i18n="footer_adidas">Adidas Original</a></li>
+                    <li><a href="#" data-i18n="footer_running">Giày Chạy Bộ</a></li>
                 </ul>
             </div>
             <div>
-                <div class="footer-col-title">Hỗ Trợ</div>
+                <div class="footer-col-title" data-i18n="footer_col_support">Hỗ Trợ</div>
                 <ul class="footer-links">
-                    <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="#">Chính sách bảo hành</a></li>
-                    <li><a href="#">Hướng dẫn chọn size</a></li>
+                    <li><a href="#" data-i18n="footer_return">Chính sách đổi trả</a></li>
+                    <li><a href="#" data-i18n="footer_warranty">Chính sách bảo hành</a></li>
+                    <li><a href="#" data-i18n="footer_size">Hướng dẫn chọn size</a></li>
                 </ul>
             </div>
             <div>
-                <div class="footer-col-title">Liên Hệ</div>
+                <div class="footer-col-title" data-i18n="footer_col_contact">Liên Hệ</div>
                 <ul class="footer-contact-list">
                     <li>
                         <i class="fa-solid fa-envelope footer-contact-icon"></i>
