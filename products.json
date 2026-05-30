@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Air Max Pulse",
+    "brand": "Nike",
+    "price": 150,
+    "oldPrice": 180,
+    "badge": "SALE",
+    "badgeClass": "sale-badge",
+    "rating": 4.8,
+    "reviews": 124,
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
+    "colors": ["#ff4757", "#2e3192", "#ffffff"],
+    "sizes": [39, 40, 41, 42, 43],
+    "desc": "Được trang bị hệ thống đệm Air thế hệ mới, Nike Air Max Pulse mang lại cảm giác êm ái vượt trội cùng thiết kế đậm chất đường phố."
+  },
+  {
+    "id": 2,
+    "name": "Adidas Ultraboost Light",
+    "brand": "Adidas",
+    "price": 190,
+    "badge": "NEW",
+    "badgeClass": "new-badge",
+    "rating": 4.9,
+    "reviews": 85,
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&auto=format&fit=crop&q=80",
+    "colors": ["#ffffff", "#000000", "#888888"],
+    "sizes": [40, 41, 42, 43, 44],
+    "desc": "Dòng sản phẩm chạy bộ huyền thoại với công nghệ đệm Boost nhẹ hơn 30%, tối ưu hóa khả năng hoàn trả năng lượng trên mỗi bước chạy."
+  },
+  {
+    "id": 3,
+    "name": "Puma RS-X Efekt Retro",
+    "brand": "Puma",
+    "price": 120,
+    "oldPrice": 140,
+    "badge": "TRENDING",
+    "badgeClass": "sale-badge",
+    "rating": 4.6,
+    "reviews": 62,
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&auto=format&fit=crop&q=80",
+    "colors": ["#e8ff47", "#111111", "#ff4757"],
+    "sizes": [38, 39, 40, 41, 42],
+    "desc": "Sự kết hợp hoàn hảo giữa phong cách tương lai và hơi hướng cổ điển, mang lại cá tính mạnh mẽ cho người mặc."
+  },
+  {
+    "id": 4,
+    "name": "Asics Gel-Kayano 30",
+    "brand": "Asics",
+    "price": 160,
+    "rating": 4.7,
+    "reviews": 95,
+    "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&auto=format&fit=crop&q=80",
+    "colors": ["#2e3192", "#ffffff"],
+    "sizes": [41, 42, 43, 44],
+    "desc": "Công nghệ 4D Guidance System đem lại sự ổn định tuyệt đối và lớp đệm FF BLAST™ PLUS ECO cho trải nghiệm êm ái đỉnh cao."
+  }
+]
