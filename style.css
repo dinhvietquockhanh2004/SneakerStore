@@ -216,7 +216,8 @@ nav {
     flex: 1 1 calc(100% / 4); padding: 28px 16px; text-align: center; font-family: 'Bebas Neue', sans-serif;
     font-size: 20px; color: var(--text-muted); cursor: pointer; transition: all 0.3s; background: var(--surface); border-bottom: 1px solid var(--border);
 }
-.brand-item:hover { color: var(--text); background: var(--surface2); }
+.brand-item:hover { color: var(--accent); background: var(--surface2); letter-spacing: 2px; }
+.brand-item:active { background: var(--surface); color: var(--accent); transform: scale(0.97); }
 
 .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; display: none; backdrop-filter: blur(4px); }
 .cart-overlay.open { display: block; }

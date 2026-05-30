@@ -299,6 +299,9 @@ function filterProducts(brandName) {
         const filtered = productsData.filter(p => p.brand.toLowerCase() === brandName.toLowerCase());
         renderProducts(filtered);
     }
+
+    const shopSection = document.getElementById('shop');
+    if (shopSection) shopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function setupSearch() {
@@ -503,7 +506,6 @@ function handleLogin(e) {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
 
-    // Lấy danh sách tài khoản đã đăng ký
     const accounts = JSON.parse(localStorage.getItem('sole_accounts') || '[]');
     const found = accounts.find(acc => acc.email === email);
 
@@ -516,7 +518,6 @@ function handleLogin(e) {
         return;
     }
 
-    // Đăng nhập thành công
     const remember = document.getElementById('rememberMe').checked;
     currentUser = { name: found.name, email: found.email };
 
@@ -559,11 +560,9 @@ function handleRegister(e) {
         return;
     }
 
-    // Lưu tài khoản mới
     accounts.push({ name, email, password: btoa(password) });
     localStorage.setItem('sole_accounts', JSON.stringify(accounts));
 
-    // Đăng nhập luôn sau khi đăng ký
     currentUser = { name, email };
     localStorage.setItem('sole_user', JSON.stringify(currentUser));
 
