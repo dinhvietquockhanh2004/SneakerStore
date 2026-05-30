@@ -3,12 +3,22 @@ let productsData = [];
 let cart = [];
 let currentSelectedSize = null;
 let activeModalProduct = null;
+let currentUser = null;
 
 // Khởi chạy ứng dụng khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     fetchProducts();
     setupSearch();
+    initAuth();
+
+    // Đóng user dropdown khi click ra ngoài
+    document.addEventListener('click', (e) => {
+        const wrap = document.getElementById('userAvatarWrap');
+        if (wrap && !wrap.contains(e.target)) {
+            document.getElementById('userDropdown').classList.remove('open');
+        }
+    });
 });
 
 /* 1. HIỆU ỨNG CON TRỎ CHUỘT (CUSTOM CURSOR) */
@@ -29,7 +39,6 @@ function initCursor() {
 
 /* 2. ĐỌC DỮ LIỆU TỪ FILE JSON */
 function fetchProducts() {
-    // Để chạy trực tiếp trên máy không cần Server Local, ta mock dữ liệu từ file JSON vào đây:
     productsData = [
         {
             "id": 1,
@@ -92,7 +101,7 @@ function renderProducts(products) {
     const container = document.getElementById('productGridContainer');
     container.innerHTML = '';
 
-    if(products.length === 0) {
+    if (products.length === 0) {
         container.innerHTML = `<p class="section-sub" style="grid-column: 1/-1; text-align: center;">Không tìm thấy sản phẩm nào phù hợp.</p>`;
         return;
     }
@@ -100,7 +109,7 @@ function renderProducts(products) {
     products.forEach(prod => {
         const badgeHTML = prod.badge ? `<span class="product-badge ${prod.badgeClass}">${prod.badge}</span>` : '';
         const oldPriceHTML = prod.oldPrice ? `<span class="old-price">$${prod.oldPrice}</span>` : '';
-        
+
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
@@ -127,10 +136,9 @@ function renderProducts(products) {
 
 /* 4. CHỨC NĂNG LỌC SẢN PHẨM */
 function filterProducts(brandName) {
-    // Đổi trạng thái active của Button
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => {
-        if(btn.textContent.trim() === brandName) btn.classList.add('active');
+        if (btn.textContent.trim() === brandName) btn.classList.add('active');
         else btn.classList.remove('active');
     });
 
@@ -155,10 +163,10 @@ function setupSearch() {
 /* 6. POPUP XEM CHI TIẾT SẢN PHẨM (QUICK VIEW) */
 function openQuickView(id) {
     const product = productsData.find(p => p.id === id);
-    if(!product) return;
+    if (!product) return;
 
     activeModalProduct = product;
-    currentSelectedSize = product.sizes[0]; // Mặc định chọn size đầu tiên
+    currentSelectedSize = product.sizes[0];
 
     document.getElementById('modalBrand').textContent = product.brand;
     document.getElementById('modalName').textContent = product.name;
@@ -168,7 +176,6 @@ function openQuickView(id) {
     document.getElementById('modalDesc').textContent = product.desc;
     document.getElementById('modalImg').src = product.image;
 
-    // Hiển thị danh sách Size
     const sizeContainer = document.getElementById('modalSizesContainer');
     sizeContainer.innerHTML = '';
     product.sizes.forEach(size => {
@@ -183,7 +190,6 @@ function openQuickView(id) {
         sizeContainer.appendChild(btn);
     });
 
-    // Gán sự kiện nút add cart trong modal
     document.getElementById('modalAddToCartBtn').onclick = () => {
         addToCart(product.id, currentSelectedSize);
         closeModalDirect();
@@ -197,7 +203,7 @@ function closeModalDirect() {
 }
 
 function closeModal(e) {
-    if(e.target === document.getElementById('modalOverlay')) {
+    if (e.target === document.getElementById('modalOverlay')) {
         closeModalDirect();
     }
 }
@@ -210,16 +216,14 @@ function toggleCart() {
 
 function directAddToCart(id) {
     const product = productsData.find(p => p.id === id);
-    addToCart(id, product.sizes[0]); // Lấy đại size đầu tiên khi mua nhanh ngoài grid
+    addToCart(id, product.sizes[0]);
 }
 
 function addToCart(id, size) {
     const product = productsData.find(p => p.id === id);
-    
-    // Kiểm tra xem sản phẩm cùng size đã có trong giỏ chưa
     const existingItem = cart.find(item => item.id === id && item.size === size);
 
-    if(existingItem) {
+    if (existingItem) {
         existingItem.quantity += 1;
     } else {
         cart.push({
@@ -237,15 +241,13 @@ function addToCart(id, size) {
 }
 
 function updateCartUI() {
-    // Cập nhật số lượng trên Icon Badge
     const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
     document.getElementById('cartCount').textContent = totalQty;
 
-    // Cập nhật danh sách item hiển thị trong Sidebar
     const cartContainer = document.getElementById('cartItemsContainer');
     cartContainer.innerHTML = '';
 
-    if(cart.length === 0) {
+    if (cart.length === 0) {
         cartContainer.innerHTML = `<p class="section-sub" style="text-align:center; padding-top:40px;">Giỏ hàng của bạn đang trống.</p>`;
         document.getElementById('cartTotalPrice').textContent = '$0.00';
         return;
@@ -279,16 +281,15 @@ function removeFromCart(index) {
 }
 
 /* 8. HIỂN THỊ THÔNG BÁO TOAST */
-function showToast() {
+function showToast(msg) {
     const toast = document.getElementById('toastNotification');
+    toast.textContent = msg || 'Đã thêm vào giỏ hàng thành công!';
     toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 2500);
+    setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
 function checkoutAlert() {
-    if(cart.length === 0) {
+    if (cart.length === 0) {
         alert('Giỏ hàng trống! Hãy chọn sản phẩm trước khi thanh toán.');
         return;
     }
@@ -296,4 +297,197 @@ function checkoutAlert() {
     cart = [];
     updateCartUI();
     toggleCart();
+}
+
+/* =============================================
+   9. HỆ THỐNG ĐĂNG NHẬP / ĐĂNG KÝ (AUTH)
+   ============================================= */
+
+function initAuth() {
+    // Kiểm tra phiên đăng nhập đã lưu
+    const saved = localStorage.getItem('sole_user');
+    if (saved) {
+        try {
+            currentUser = JSON.parse(saved);
+            updateAuthUI();
+        } catch (e) {
+            localStorage.removeItem('sole_user');
+        }
+    }
+}
+
+function openAuthModal(tab) {
+    switchAuthTab(tab || 'login');
+    document.getElementById('authModal').classList.add('open');
+    document.getElementById('authOverlay').classList.add('open');
+    clearAuthErrors();
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('open');
+    document.getElementById('authOverlay').classList.remove('open');
+    clearAuthErrors();
+}
+
+function switchAuthTab(tab) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const tabLogin = document.getElementById('tabLogin');
+    const tabRegister = document.getElementById('tabRegister');
+    const subtitle = document.getElementById('authSubtitle');
+
+    clearAuthErrors();
+
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        subtitle.textContent = 'Chào mừng trở lại';
+    } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        tabLogin.classList.remove('active');
+        tabRegister.classList.add('active');
+        subtitle.textContent = 'Tạo tài khoản mới';
+    }
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    clearAuthErrors();
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    // Lấy danh sách tài khoản đã đăng ký
+    const accounts = JSON.parse(localStorage.getItem('sole_accounts') || '[]');
+    const found = accounts.find(acc => acc.email === email);
+
+    if (!found) {
+        showAuthError('loginError', 'Email không tồn tại. Hãy đăng ký tài khoản mới!');
+        return;
+    }
+    if (found.password !== btoa(password)) {
+        showAuthError('loginError', 'Mật khẩu không chính xác. Vui lòng thử lại!');
+        return;
+    }
+
+    // Đăng nhập thành công
+    const remember = document.getElementById('rememberMe').checked;
+    currentUser = { name: found.name, email: found.email };
+
+    if (remember) {
+        localStorage.setItem('sole_user', JSON.stringify(currentUser));
+    } else {
+        sessionStorage.setItem('sole_user', JSON.stringify(currentUser));
+    }
+
+    closeAuthModal();
+    updateAuthUI();
+    showToast('Đăng nhập thành công! Chào ' + found.name.split(' ').pop() + ' 👋');
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    clearAuthErrors();
+
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const confirm = document.getElementById('regConfirm').value;
+
+    if (name.length < 2) {
+        showAuthError('registerError', 'Vui lòng nhập họ tên hợp lệ (ít nhất 2 ký tự).');
+        return;
+    }
+    if (password.length < 6) {
+        showAuthError('registerError', 'Mật khẩu phải có ít nhất 6 ký tự.');
+        return;
+    }
+    if (password !== confirm) {
+        showAuthError('registerError', 'Xác nhận mật khẩu không khớp!');
+        return;
+    }
+
+    const accounts = JSON.parse(localStorage.getItem('sole_accounts') || '[]');
+    if (accounts.find(acc => acc.email === email)) {
+        showAuthError('registerError', 'Email này đã được đăng ký. Hãy đăng nhập!');
+        return;
+    }
+
+    // Lưu tài khoản mới
+    accounts.push({ name, email, password: btoa(password) });
+    localStorage.setItem('sole_accounts', JSON.stringify(accounts));
+
+    // Đăng nhập luôn sau khi đăng ký
+    currentUser = { name, email };
+    localStorage.setItem('sole_user', JSON.stringify(currentUser));
+
+    closeAuthModal();
+    updateAuthUI();
+    showToast('Tạo tài khoản thành công! Chào mừng ' + name.split(' ').pop() + ' 🎉');
+}
+
+function handleLogout() {
+    currentUser = null;
+    localStorage.removeItem('sole_user');
+    sessionStorage.removeItem('sole_user');
+    document.getElementById('userDropdown').classList.remove('open');
+    updateAuthUI();
+    showToast('Đã đăng xuất. Hẹn gặp lại!');
+}
+
+function updateAuthUI() {
+    const loginBtn = document.getElementById('loginNavBtn');
+    const avatarWrap = document.getElementById('userAvatarWrap');
+
+    if (currentUser) {
+        loginBtn.classList.add('hidden');
+        avatarWrap.classList.remove('hidden');
+
+        const initial = currentUser.name.trim().charAt(0).toUpperCase();
+        const shortName = currentUser.name.split(' ').pop();
+
+        document.getElementById('userAvatarInitial').textContent = initial;
+        document.getElementById('userDisplayName').textContent = shortName;
+        document.getElementById('dropdownName').textContent = currentUser.name;
+        document.getElementById('dropdownEmail').textContent = currentUser.email;
+    } else {
+        loginBtn.classList.remove('hidden');
+        avatarWrap.classList.add('hidden');
+    }
+}
+
+function toggleUserMenu() {
+    document.getElementById('userDropdown').classList.toggle('open');
+}
+
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+}
+
+function showAuthError(elementId, message) {
+    const el = document.getElementById(elementId);
+    if (el) el.textContent = message;
+}
+
+function clearAuthErrors() {
+    ['loginError', 'registerError'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '';
+    });
+}
+
+function socialLogin(provider) {
+    closeAuthModal();
+    showToast('Đăng nhập ' + provider + ' — tính năng sắp ra mắt!');
 }

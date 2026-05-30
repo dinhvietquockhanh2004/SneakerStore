@@ -29,8 +29,112 @@
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-badge" id="cartCount">0</span>
             </button>
+            <div class="auth-nav-area" id="authNavArea">
+                <button class="login-btn" id="loginNavBtn" onclick="openAuthModal('login')">
+                    <i class="fa-solid fa-user"></i>
+                    Đăng Nhập
+                </button>
+                <div class="user-avatar-wrap hidden" id="userAvatarWrap">
+                    <button class="user-avatar-btn" onclick="toggleUserMenu()">
+                        <div class="user-avatar" id="userAvatarInitial">A</div>
+                        <span class="user-display-name" id="userDisplayName">User</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name" id="dropdownName">Nguyễn Văn A</div>
+                            <div class="user-dropdown-email" id="dropdownEmail">user@example.com</div>
+                        </div>
+                        <ul class="user-dropdown-menu">
+                            <li><a href="#"><i class="fa-solid fa-bag-shopping"></i> Đơn hàng của tôi</a></li>
+                            <li><a href="#"><i class="fa-solid fa-heart"></i> Yêu thích</a></li>
+                            <li><a href="#"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a></li>
+                        </ul>
+                        <button class="user-logout-btn" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
+
+    <!-- AUTH MODAL -->
+    <div class="auth-overlay" id="authOverlay" onclick="closeAuthModal()"></div>
+    <div class="auth-modal" id="authModal">
+        <button class="auth-modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="auth-brand">SOLE</div>
+        <p class="auth-subtitle" id="authSubtitle">Chào mừng trở lại</p>
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Đăng Nhập</button>
+            <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Đăng Ký</button>
+        </div>
+
+        <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-envelope form-icon"></i>
+                    <input type="email" class="form-input" id="loginEmail" placeholder="email@example.com" autocomplete="email" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Mật Khẩu</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-lock form-icon"></i>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required />
+                    <button type="button" class="toggle-pw" onclick="togglePassword('loginPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="form-check"><input type="checkbox" id="rememberMe" /> Ghi nhớ đăng nhập</label>
+                <a href="#" class="form-link" onclick="return false;">Quên mật khẩu?</a>
+            </div>
+            <div class="auth-error" id="loginError"></div>
+            <button type="submit" class="auth-submit-btn">ĐĂNG NHẬP</button>
+            <div class="auth-divider"><span>hoặc tiếp tục với</span></div>
+            <div class="auth-socials">
+                <button type="button" class="social-auth-btn" onclick="socialLogin('Google')"><i class="fa-brands fa-google"></i> Google</button>
+                <button type="button" class="social-auth-btn" onclick="socialLogin('Facebook')"><i class="fa-brands fa-facebook-f"></i> Facebook</button>
+            </div>
+        </form>
+
+        <form class="auth-form hidden" id="registerForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label class="form-label">Họ &amp; Tên</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-user form-icon"></i>
+                    <input type="text" class="form-input" id="regName" placeholder="Nguyễn Văn A" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-envelope form-icon"></i>
+                    <input type="email" class="form-input" id="regEmail" placeholder="email@example.com" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Mật Khẩu</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-lock form-icon"></i>
+                    <input type="password" class="form-input" id="regPassword" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password" required />
+                    <button type="button" class="toggle-pw" onclick="togglePassword('regPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Xác Nhận Mật Khẩu</label>
+                <div class="form-input-wrap">
+                    <i class="fa-solid fa-lock form-icon"></i>
+                    <input type="password" class="form-input" id="regConfirm" placeholder="Nhập lại mật khẩu" required />
+                </div>
+            </div>
+            <label class="form-check" style="margin-bottom:16px">
+                <input type="checkbox" id="agreeTerms" required />
+                Tôi đồng ý với <a href="#" class="form-link" onclick="return false;">Điều khoản dịch vụ</a>
+            </label>
+            <div class="auth-error" id="registerError"></div>
+            <button type="submit" class="auth-submit-btn">TẠO TÀI KHOẢN</button>
+        </form>
+    </div>
 
     <section class="hero">
         <div class="hero-info">
